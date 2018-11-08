@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F10CF428-CBA4-4117-A0E3-B613B8355A40}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{CD3C5C0B-7CBE-443D-A7D6-D1DD2CBE8F7F}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Application</RootNamespace>
-    <AssemblyName>Application</AssemblyName>
+    <RootNamespace>CalculatorLibrary</RootNamespace>
+    <AssemblyName>CalculatorLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,16 +40,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Calculator.cs" />
+    <Compile Include="CalculatorReplLoop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CalculatorLibrary\CalculatorLibrary.csproj">
-      <Project>{cd3c5c0b-7cbe-443d-a7d6-d1dd2cbe8f7f}</Project>
-      <Name>CalculatorLibrary</Name>
+    <ProjectReference Include="..\CalculatorCommandParsingLibrary\CalculatorCommandParsingLibrary.csproj">
+      <Project>{a620f774-cc91-481e-ad78-7b9f031b8c17}</Project>
+      <Name>CalculatorCommandParsingLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonTypeLibrary\CommonTypeLibrary.csproj">
+      <Project>{8B99E9F3-5C6E-4E5D-B22B-76F4882AE01D}</Project>
+      <Name>CommonTypeLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InputOutputLibrary\InputOutputLibrary.csproj">
+      <Project>{5e5adc02-a2f6-445f-9b75-ffc45e4842df}</Project>
+      <Name>InputOutputLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
