@@ -32,7 +32,7 @@ namespace Application
                 catch (Exception)
                 {
 
-                    throw;
+                    outputService.WriteMessage("Mistake!");
                 }
             }
         }
