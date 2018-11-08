@@ -7,7 +7,7 @@ namespace Application
         static void Main(string[] args)
         {
             CalculatorReplLoop loop = new CalculatorReplLoop();
-            loop.OutputService = new MsgBoxOutputService();
+            //loop.OutputService = new MsgBoxOutputService();
             loop.Run();
         }
     }
