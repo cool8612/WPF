@@ -2,7 +2,7 @@
 
 namespace Application
 {
-    public class ConsoleOutputService
+    public class ConsoleOutputService : IOutputService
     {
         public void WriteMessage(string message)
         {

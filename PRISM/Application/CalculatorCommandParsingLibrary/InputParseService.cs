@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Application;
+using System;
 
 namespace Application
 {
-    public class InputParseService
+    public class InputParseService : IInputParseService
     {
         public CommandTypes ParseCommand(string command)
         {

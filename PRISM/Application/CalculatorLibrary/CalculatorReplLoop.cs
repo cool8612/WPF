@@ -2,40 +2,40 @@
 
 namespace Application
 {
-    public class CalculatorReplLoop
+    public class CalculatorReplLoop 
     {
         public CalculatorReplLoop()
         {
-            inputService = new ConsoleInputService();
-            outputService = new ConsoleOutputService();
-            calculator = new Calculator();
-            inputParseService = new InputParseService();
+            InputService = new ConsoleInputService();
+            OutputService = new ConsoleOutputService();
+            Calculator = new Calculator();
+            ParsingService = new InputParseService();
         }
+
+        public ICalculator Calculator { get; set; }
+        public IInputService InputService { get; set; }
+        public IOutputService OutputService { get; set; }
+        public IInputParseService ParsingService { get; set; }
+
         public void Run()
         {
             while (true)
             {
-                string command = inputService.ReadCommand();
+                string command = InputService.ReadCommand();
                 try
                 {
-                    CommandTypes commandType = inputParseService.ParseCommand(command);
+                    CommandTypes commandType = ParsingService.ParseCommand(command);
 
-                    Arguments args = inputService.ReadArguments();
-                    outputService.WriteMessage(
-                        calculator.Execute(commandType, args).ToString());
+                    Arguments args = InputService.ReadArguments();
+                    OutputService.WriteMessage(
+                        Calculator.Execute(commandType, args).ToString());
 
                 }
                 catch (Exception)
                 {
-
-                    outputService.WriteMessage("Mistake!");
+                    OutputService.WriteMessage("Mistake!");
                 }
             }
         }
-        ConsoleInputService inputService;
-        ConsoleOutputService outputService;
-        Calculator calculator;
-        InputParseService inputParseService;
-
     }
 }

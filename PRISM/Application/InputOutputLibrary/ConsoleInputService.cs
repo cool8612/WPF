@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Application;
+using System;
 
 namespace Application
 {
-    public class ConsoleInputService
+    public class ConsoleInputService : IInputService
     {
         public string ReadCommand()
         {

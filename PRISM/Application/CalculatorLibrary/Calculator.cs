@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Application;
+using System;
 
 namespace Application
 {
-    class Calculator
+    class Calculator : ICalculator
     {
         public int Execute(CommandTypes commandType, Arguments args)
         {
