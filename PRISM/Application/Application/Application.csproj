@@ -43,6 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Argument.cs" />
+    <Compile Include="Calculator.cs" />
+    <Compile Include="CalculatorReplLoop.cs" />
+    <Compile Include="CommandTypes.cs" />
+    <Compile Include="ConsoleInputService.cs" />
+    <Compile Include="ConsoleOutputService.cs" />
+    <Compile Include="InputParseService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

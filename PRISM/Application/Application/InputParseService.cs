@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Application
 {
-    class Program
+    public class InputParseService
     {
-        static void Main(string[] args)
+        public CommandTypes ParseCommand(string command)
         {
-            CalculatorReplLoop loop = new CalculatorReplLoop();
-            loop.Run();
+            return (CommandTypes)Enum.Parse(typeof(CommandTypes), command);
         }
     }
 }

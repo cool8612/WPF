@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Application
 {
-    class Program
+    public class ConsoleOutputService
     {
-        static void Main(string[] args)
+        public void WriteMessage(string message)
         {
-            CalculatorReplLoop loop = new CalculatorReplLoop();
-            loop.Run();
+            Console.WriteLine(message);
         }
     }
 }
