@@ -1,54 +1,65 @@
 ﻿//using InputOutputLibrary;
 using System;
+using Unity.Attributes;
 
 namespace Application
 {
     public class CalculatorReplLoop : ICalculatorReplLoop
     {
-        public CalculatorReplLoop(ICalculator calculator,
-                                   IInputService inputService,
-                                   IOutputService outputService,
-                                   IInputParseService parsingService)
+        public CalculatorReplLoop()
         {
-            this.calculator = calculator;
-            this.inputService = inputService;
-            this.outputService = outputService;
-            this.parsingService = parsingService;
+
+        }
+       
+        private ICalculator calculator;
+        [Dependency]
+        public ICalculator Calculator
+        {
+            get { return calculator; }
+            set { calculator = value; }
         }
 
-        // 유니티 컨테이너가 생성자를 선택할때 인자가 많은버전부터 선택하는듯.
-        //public CalculatorReplLoop(ICalculator calculator,
-        //                        IInputService inputService,
-        //                        IInputParseService parsingService)
-        //{
-        //    this.calculator = calculator;
-        //    this.inputService = inputService;
-        //    this.outputService = new MsgBoxOutputService();
-        //    this.parsingService = parsingService;
-        //}
+        private IInputService inputService;
+        [Dependency]
+        public IInputService InputService
+        {
+            get { return inputService; }
+            set { inputService = value; }
+        }
 
-        public ICalculator calculator;
-        public IInputService inputService;
-        public IOutputService outputService;
-        public IInputParseService parsingService;
+        private IOutputService outputService;
+        [Dependency]
+        public IOutputService OutputService
+        {
+            get { return outputService; }
+            set { outputService = value; }
+        }
+
+        private IInputParseService parsingService;
+        [Dependency]
+        public IInputParseService ParsingService
+        {
+            get { return parsingService; }
+            set { parsingService = value; }
+        }
 
         public void Run()
         {
             while (true)
             {
-                string command = inputService.ReadCommand();
+                string command = InputService.ReadCommand();
                 try
                 {
-                    CommandTypes commandType = parsingService.ParseCommand(command);
+                    CommandTypes commandType = ParsingService.ParseCommand(command);
 
-                    Arguments args = inputService.ReadArguments();
-                    outputService.WriteMessage(
-                        calculator.Execute(commandType, args).ToString());
+                    Arguments args = InputService.ReadArguments();
+                    OutputService.WriteMessage(
+                        Calculator.Execute(commandType, args).ToString());
 
                 }
                 catch (Exception)
                 {
-                    outputService.WriteMessage("Mistake!");
+                    OutputService.WriteMessage("Mistake!");
                 }
             }
         }
