@@ -3,7 +3,7 @@ using System;
 
 namespace Application
 {
-    class Calculator : ICalculator
+    public class Calculator : ICalculator
     {
         public int Execute(CommandTypes commandType, Arguments args)
         {

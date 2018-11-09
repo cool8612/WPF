@@ -1,4 +1,4 @@
-﻿using InputOutputLibrary;
+﻿using Unity;
 
 namespace Application
 {
@@ -6,8 +6,19 @@ namespace Application
     {
         static void Main(string[] args)
         {
-            CalculatorReplLoop loop = new CalculatorReplLoop();
-            //loop.OutputService = new MsgBoxOutputService();
+            UnityContainer container = new UnityContainer();
+
+            // 인스턴스 등록 버전
+            //Calculator calculator = new Calculator();
+            //container.RegisterInstance<ICalculator>(calculator);
+
+            container.RegisterType<ICalculatorReplLoop, CalculatorReplLoop>();
+            container.RegisterType<ICalculator, Calculator>();
+            container.RegisterType<IInputParseService, InputParseService>();
+            container.RegisterType<IInputService, ConsoleInputService>();
+            container.RegisterType<IOutputService, ConsoleOutputService>();
+
+            ICalculatorReplLoop loop = container.Resolve<ICalculatorReplLoop>();
             loop.Run();
         }
     }

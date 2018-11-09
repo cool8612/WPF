@@ -1,39 +1,54 @@
-﻿using System;
+﻿//using InputOutputLibrary;
+using System;
 
 namespace Application
 {
-    public class CalculatorReplLoop 
+    public class CalculatorReplLoop : ICalculatorReplLoop
     {
-        public CalculatorReplLoop()
+        public CalculatorReplLoop(ICalculator calculator,
+                                   IInputService inputService,
+                                   IOutputService outputService,
+                                   IInputParseService parsingService)
         {
-            InputService = new ConsoleInputService();
-            OutputService = new ConsoleOutputService();
-            Calculator = new Calculator();
-            ParsingService = new InputParseService();
+            this.calculator = calculator;
+            this.inputService = inputService;
+            this.outputService = outputService;
+            this.parsingService = parsingService;
         }
 
-        public ICalculator Calculator { get; set; }
-        public IInputService InputService { get; set; }
-        public IOutputService OutputService { get; set; }
-        public IInputParseService ParsingService { get; set; }
+        // 유니티 컨테이너가 생성자를 선택할때 인자가 많은버전부터 선택하는듯.
+        //public CalculatorReplLoop(ICalculator calculator,
+        //                        IInputService inputService,
+        //                        IInputParseService parsingService)
+        //{
+        //    this.calculator = calculator;
+        //    this.inputService = inputService;
+        //    this.outputService = new MsgBoxOutputService();
+        //    this.parsingService = parsingService;
+        //}
+
+        public ICalculator calculator;
+        public IInputService inputService;
+        public IOutputService outputService;
+        public IInputParseService parsingService;
 
         public void Run()
         {
             while (true)
             {
-                string command = InputService.ReadCommand();
+                string command = inputService.ReadCommand();
                 try
                 {
-                    CommandTypes commandType = ParsingService.ParseCommand(command);
+                    CommandTypes commandType = parsingService.ParseCommand(command);
 
-                    Arguments args = InputService.ReadArguments();
-                    OutputService.WriteMessage(
-                        Calculator.Execute(commandType, args).ToString());
+                    Arguments args = inputService.ReadArguments();
+                    outputService.WriteMessage(
+                        calculator.Execute(commandType, args).ToString());
 
                 }
                 catch (Exception)
                 {
-                    OutputService.WriteMessage("Mistake!");
+                    outputService.WriteMessage("Mistake!");
                 }
             }
         }
