@@ -1,2 +1,6 @@
 bin
 obj
+packages
+/PRISM/Application/Application/packages.config
+/PRISM/Application/CalculatorCommandParsingLibrary/packages.config
+packages.config
